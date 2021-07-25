@@ -3,30 +3,30 @@ const path = require('path');
 const packageJson = require('../package.json');
 
 const manifest = {
-  manifest_version: 2,
+  manifest_version: 3,
   name: packageJson.extensionName,
   version: packageJson.version,
   description: packageJson.description,
   options_ui: {
     page: 'options.html',
   },
-  browser_action: {
+  action: {
     default_popup: 'options.html',
   },
   background: {
-    scripts: ['background_script.js'],
+    service_worker: 'background_script.js',
   },
-  permissions: [
-    'storage',
-    '*://api.aniskip.com/*',
-    '*://api.malsync.moe/*',
-    '*://graphql.anilist.co/*',
-  ],
+  permissions: ['storage'],
   icons: {
     16: 'icon_16.png',
     48: 'icon_48.png',
     128: 'icon_128.png',
   },
+  host_permissions: [
+    '*://api.aniskip.com/*',
+    '*://api.malsync.moe/*',
+    '*://graphql.anilist.co/*',
+  ],
 };
 
 const getPageUrls = () => {
@@ -83,20 +83,14 @@ module.exports = () => {
       run_at: 'document_start',
     },
   ];
-  manifest.optional_permissions = Array.from(
-    new Set(pageUrls.concat(playerUrls))
-  );
+  manifest.host_permissions = Array.from(new Set(pageUrls.concat(playerUrls)));
 
   switch (process.env.BROWSER) {
     case 'chromium':
-      manifest.options_ui.chrome_style = false;
       manifest.options_ui.open_in_tab = true;
-      manifest.browser_action.chrome_style = false;
       break;
     case 'firefox':
-      manifest.options_ui.browser_style = false;
       manifest.options_ui.open_in_tab = true;
-      manifest.browser_action.browser_style = false;
       manifest.browser_specific_settings = {
         gecko: {
           id: '{c67645fa-ad86-4b2f-ab7a-67fc5f3e9f5a}',
@@ -108,7 +102,7 @@ module.exports = () => {
   }
 
   if (process.env.NODE_ENV === 'development') {
-    manifest.permissions.push('*://localhost/*');
+    manifest.host_permissions.push('*://localhost/*');
   }
   return manifest;
 };
