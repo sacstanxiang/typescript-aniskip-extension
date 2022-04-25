@@ -3452,14 +3452,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^17.0.44":
-  version: 17.0.44
-  resolution: "@types/react@npm:17.0.44"
+"@types/react@npm:^18.0.7":
+  version: 18.0.7
+  resolution: "@types/react@npm:18.0.7"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: ebee02778ca08f954c316dc907802264e0121c87b8fa2e7e0156ab0ef2a1b0a09d968c016a3600ec4c9a17dc09b4274f292d9b15a1a5369bb7e4072def82808f
+  checksum: 0cbbfc118227a8bd25cbec253f6ace46c1af0c9b1a4abfe5a51ed1977b93c3e82af2a70d38ba77fc36075e886d303dd57f3302447b70152702028f20a4675e32
   languageName: node
   linkType: hard
 
@@ -15969,7 +15969,7 @@ resolve@^2.0.0-next.3:
     "@reduxjs/toolkit": ^1.8.1
     "@types/chrome": ^0.0.181
     "@types/glob-to-regexp": ^0.4.1
-    "@types/react": ^17.0.44
+    "@types/react": ^18.0.7
     "@types/react-color": ^3.0.6
     "@types/react-dom": ^18.0.2
     "@types/remote-redux-devtools": ^0.5.5
